@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Exit - Unified Access Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                EMPLOYEE EXIT
+                <span>ACCESS MANAGEMENT</span>
+            </div>
+            <ul>
+                <li class="active" data-target="overview-view"><a href="#">Overview</a></li>
+                <li data-target="employees-view"><a href="#">Employees</a></li>
+                <li data-target="inventory-view"><a href="#">Access Inventory</a></li>
+                <li data-target="settings-view"><a href="#">Settings</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                IT Security Team
+                <span>it.security@contoso.com</span>
+            </div>
+        </nav>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header>
+                <div class="header-title">
+                    <h1>Employee Exit - Unified Access Dashboard</h1>
+                    <p>Single Glass Pane view of all employee access across systems</p>
+                </div>
+            </header>
+
+            <!-- VIEW 1: OVERVIEW (Main Dashboard) -->
+            <div id="overview-view" class="view-section active">
+                <!-- KPI Cards -->
+                <section class="kpi-cards">
+                    <div class="card"><h4>Total Pending Exits</h4><p id="total-leavers">0</p><span>Based on current data</span></div>
+                    <div class="card"><h4>Total Accesses to Revoke</h4><p id="total-accesses">0</p><span>Across all systems</span></div>
+                    <div class="card"><h4>Systems Healthy</h4><p class="success">100%</p><span>All APIs connected</span></div>
+                </section>
+
+                <!-- Charts Section -->
+                <section class="charts-section">
+                    <div class="chart-container">
+                        <h3>Exits by Department</h3>
+                        <canvas id="departmentPieChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Access Systems Count per Employee</h3>
+                        <canvas id="accessCountChart"></canvas>
+                    </div>
+                </section>
+
+                <!-- Employee Table -->
+                <section class="employee-summary">
+                    <h3>Employee Access Summary</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Employee Name</th>
+                                <th>Department</th>
+                                <th>Exit Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employee-table-body">
+                            <!-- Populated dynamically by JavaScript -->
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+
+            <!-- VIEW 2: EMPLOYEES -->
+            <div id="employees-view" class="view-section">
+                <section class="employee-summary">
+                    <h3>Full Employee Directory</h3>
+                    <p>Manage active and inactive employees. Syncs daily with HRIS.</p>
+                    <div class="mock-card">
+                        <button class="view-btn">Sync Now</button>
+                        <button class="view-btn">Export CSV</button>
+                        <p style="margin-top: 15px; color: #666;"><em>Directory list will render here. Currently tracking 1,245 active employees.</em></p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- VIEW 3: ACCESS INVENTORY -->
+            <div id="inventory-view" class="view-section">
+                <section class="employee-summary">
+                    <h3>Integrated Systems Inventory</h3>
+                    <p>List of all applications connected to the Unified Access Dashboard.</p>
+                    <div class="kpi-cards" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="card"><h4>Azure Active Directory</h4><p class="success">Connected</p><span>Last sync: 5 mins ago</span></div>
+                        <div class="card"><h4>Salesforce CRM</h4><p class="success">Connected</p><span>Last sync: 10 mins ago</span></div>
+                        <div class="card"><h4>GitHub Enterprise</h4><p class="success">Connected</p><span>Last sync: 15 mins ago</span></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- VIEW 4: SETTINGS -->
+            <div id="settings-view" class="view-section">
+                <section class="employee-summary">
+                    <h3>Dashboard Configuration</h3>
+                    <div class="mock-card form-mock">
+                        <label><strong>Automation</strong></label><br>
+                        <input type="checkbox" checked> Enable auto-revocation on Exit Date<br><br>
+                        
+                        <label><strong>Notifications</strong></label><br>
+                        <input type="checkbox" checked> Email IT Security upon failed revocation<br>
+                        <input type="checkbox"> Daily summary reports<br><br>
+
+                        <label><strong>Sync Frequency</strong></label><br>
+                        <select style="padding: 5px; border-radius: 4px; margin-bottom: 15px;">
+                            <option>Every 1 Hour</option>
+                            <option>Every 6 Hours</option>
+                            <option>Every 24 Hours</option>
+                        </select>
+                        <br>
+                        <button class="view-btn" onclick="alert('Settings saved successfully!')">Save Preferences</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- The Modal Popup for Access Details -->
+    <div id="accessModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="modalEmployeeName">Access Details</h3>
+            <ul id="modalAccessList">
+                <!-- Access items injected here via JS -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
