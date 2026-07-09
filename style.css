@@ -266,3 +266,18 @@ th {
     margin-bottom: 5px;
     color: #333;
 }
+
+/* Access Level Badges inside Modal */
+.access-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+/* Color coding based on risk */
+.access-badge.admin, .access-badge.owner { background-color: #fddddd; color: #c30000; } /* Red for High Priv */
+.access-badge.readonly { background-color: #e0e7ff; color: #004085; } /* Blue for Read */
+.access-badge.standard, .access-badge.contributor { background-color: #d4edda; color: #155724; } /* Green for Standard */
+.access-badge.readwrite { background-color: #fff3cd; color: #856404; } /* Yellow for Edit */
